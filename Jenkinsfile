@@ -18,9 +18,9 @@ node {
                 docker push hisrarul/aisight-assignment:${commitId}
             """
     }
-    stage('Run Unittest') {
-            sh "docker run hisrarul/aisight-assignment:${commitId}"
-    }
+//     stage('Run Unittest') {
+//             sh "docker run hisrarul/aisight-assignment:${commitId}"
+//     }
     stage('Deploy to Kubernetes') {
             sh "kubectl create deployment aisight-assignment --image=hisrarul/aisight-assignment:${commitId}"
     }
