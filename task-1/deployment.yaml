@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: aisight-assignment
+  name: aisight-assignment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: aisight-assignment
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: aisight-assignment
+    spec:
+      containers:
+      - image: hisrarul/aisight-assignment:IMAGETAG
+        name: aisight-assignment
+        resources: {}
+status: {}
