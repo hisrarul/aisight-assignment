@@ -1,1 +1,1 @@
-# aisight-assignment
+# aisight
