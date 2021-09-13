@@ -1,5 +1,14 @@
 ## Task 1
 
+## Task-1 contains following components as part of solution
++ Hello world app
++ Unit test for hello world
++ Dockerfile of Helloworld
++ Dockerfile to build Jenkins image
++ Deployment file to Helloworld app on Kubernetes
++ Pipeline to deploy app and run unit test on Jenkins
++ GitHub Actions to run test using github events
+
 #### Build Jenkins image
 ```bash
 docker build -t hisrarul/jenkins:sep2021 -f Dockerfile-Jenkins .
