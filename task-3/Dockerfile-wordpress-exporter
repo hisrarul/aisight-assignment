@@ -1,0 +1,9 @@
+FROM golang:1.16-alpine
+
+WORKDIR /app
+
+
+# Download necessary Go modules
+RUN apk add git
+RUN git clone https://github.com/hisrarul/wordpress_exporter && cd wordpress_exporter && go mod init wordpress_exporter && go mod tidy && go mod vendor && go build
+ENTRYPOINT ["./wordpress_exporter/wordpress_exporter"]

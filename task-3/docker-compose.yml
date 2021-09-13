@@ -1,0 +1,71 @@
+version: "3.8"
+    
+services:
+  db:
+    image: mysql:5.7
+    volumes:
+      - db_data:/var/lib/mysql
+    restart: always
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: somewordpress
+      MYSQL_DATABASE: wordpress
+      MYSQL_USER: wordpress
+      MYSQL_PASSWORD: wordpress
+    
+  wordpress:
+    depends_on:
+      - db
+    image: wordpress:latest
+    volumes:
+      - ./wordpress_data:/var/www/html
+    ports:
+      - "8000:80"
+    restart: always
+    environment:
+      WORDPRESS_DB_HOST: db:3306
+      WORDPRESS_DB_USER: wordpress
+      WORDPRESS_DB_PASSWORD: wordpress
+      WORDPRESS_DB_NAME: wordpress
+
+  prometheus:
+    # network_mode: host
+    image: prom/prometheus:v2.22.0
+    command: "--config.file=/etc/prometheus/prometheus.yaml"
+    volumes:
+      - "./prometheus.yaml:/etc/prometheus/prometheus.yaml:ro"
+    ports:
+      - "9090:9090"
+    depends_on:
+      - wordpress
+    restart: always
+
+  grafana:
+    # network_mode: host
+    image: grafana/grafana
+    user: "472"
+    depends_on:
+      - prometheus
+    ports:
+      - 4000:3000
+    volumes:
+      - grafana_data:/var/lib/grafana
+    env_file:
+      - ./grafana/config.monitoring
+    restart: always
+
+  wordpress_exporter:
+    build:
+      context: .
+      dockerfile: Dockerfile-wordpress-exporter
+    command: '-host=db -db=wordpress -user=wordpress -pass=wordpress'
+    ports:
+      - 8888:8888
+    depends_on:
+      - db
+
+volumes:
+  db_data: {}
+  wordpress_data: {}
+  grafana_data: {}
