@@ -1,5 +1,49 @@
 ## Task-2
 
+#### Below is the list of resources created using cloudformation template
+* ALBListener
+* AutoscalingRole
+* CloudwatchLogsGroup
+* ContainerInstances
+* EC2InstanceProfile
+* EC2Role
+* ECSALB
+* ECSAutoScalingGroup
+* ECSCluster
+* ECSServiceRole
+* ECSTG
+* EcsSecurityGroup
+* EcsSecurityGroupALBports
+* EcsSecurityGroupHTTPinbound
+* EcsSecurityGroupSSHinbound
+* EcsServiceSecurityGroup
+* EcsServiceSecurityGroupHTTPinbound
+* GatewayAttachement
+* InternetGateway
+* PostsECSTG
+* PostsListenerRule
+* PostsService
+* PostsServiceScalingTarget
+* PostsTaskDefinition
+* PublicRoute
+* PublicRouteTable
+* PublicSubnetOne
+* PublicSubnetOneRouteTableAssociation
+* PublicSubnetTwo
+* PublicSubnetTwoRouteTableAssociation
+* ServiceScalingTarget
+* TaskDefinition
+* ThreadDiscoveryService
+* ThreadPrivateNamespace
+* ThreadService
+* ThreadsListenerRule
+* UsersECSTG
+* UsersListenerRule
+* UsersService
+* UsersServiceScalingTarget
+* UsersTaskDefinition
+* VPC
+
 #### Build the docker images
 ```bash
 docker build -t hisrarul/posts ./services/posts
